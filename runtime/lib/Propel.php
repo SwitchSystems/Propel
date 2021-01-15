@@ -29,7 +29,7 @@ class Propel
     /**
      * The Propel version.
      */
-    const VERSION = '1.7.2-dev';
+    const VERSION = '1.7.3-dev';
 
     /**
      * A constant for <code>default</code>.
@@ -648,7 +648,7 @@ class Propel
      */
     public static function initConnection($conparams, $name, $defaultClass = Propel::CLASS_PROPEL_PDO)
     {
-        $adapter = self::getDB($name);
+        $adapter = isset($conparams['adapter']) ? DBAdapter::factory($conparams['adapter']) : self::getDB($name);
 
         if (null === $conparams['dsn']) {
             throw new PropelException('No dsn specified in your connection parameters for datasource [' . $name . ']');
